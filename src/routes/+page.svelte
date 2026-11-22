@@ -1,2 +1,13 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script>
+  import BootSequence from "#lib/components/startup/BootSequence.svelte";
+
+  import LoginScreen from "#lib/components/LoginScreen.svelte";
+
+  let bootComplete = $state(false);
+</script>
+
+{#if bootComplete}
+  <LoginScreen />
+{:else}
+  <BootSequence onComplete={() => (bootComplete = true)} />
+{/if}

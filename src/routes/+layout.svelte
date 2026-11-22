@@ -1,13 +1,11 @@
-<script lang="ts">
-	import '../app.css';
-	import favicon from '#lib/assets/favicon.svg';
-	import type { LayoutProps } from './$types';
+<script>
+  import "../app.css";
 
-	let { children }: LayoutProps = $props();
+  import "@fontsource/vt323";
+  import "@fontsource/pixelify-sans";
+  import "@fontsource/ibm-plex-mono";
+
+  let { children } = $props();
 </script>
-
-<svelte:head>
-	<link rel="icon" href={favicon} />
-</svelte:head>
 
 {@render children()}
