@@ -1,0 +1,236 @@
+.desktop {
+  min-height: 100dvh;
+  background:
+    url("/images/login-background.png") center / cover no-repeat,
+    radial-gradient(#172b55, #040410);
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 4vw, 48px);
+  color: #111318;
+}
+
+.desktop .window {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  width: min(100%, 1120px);
+  min-height: 34rem;
+  background: #c0c0c0;
+  border: 4px outset #ddd;
+  padding: 3px;
+}
+
+.desktop .window-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.desktop .title-bar {
+  background: #10105e;
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+}
+
+.desktop .content {
+  padding: clamp(20px, 3vw, 36px);
+  font-size: 24px;
+}
+
+.desktop .brand-panel {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  padding: 24px;
+}
+
+.desktop .logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.desktop h2,
+.getaccess h2 {
+  font-weight: normal;
+}
+
+.desktop form,
+.getaccess form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.desktop input,
+.desktop button,
+.getaccess input,
+.getaccess button {
+  font: inherit;
+}
+
+.desktop input,
+.getaccess input {
+  background: #f2f1e9;
+  border: 3px inset #ddd;
+  padding: 10px;
+  width: 100%;
+}
+
+.desktop button,
+.getaccess button {
+  background: #c0c0c0;
+  border: 3px outset #ddd;
+  padding: 10px;
+}
+
+.desktop button:active,
+.getaccess button:active {
+  border-style: inset;
+}
+
+.getaccess #email {
+  width: 20rem;
+}
+
+.desktop .status {
+  display: flex;
+  border-top: 2px groove #ddd;
+  padding: 10px;
+  color: #215a39;
+  font-size: 20px;
+}
+
+.desktop h3 {
+  padding: 10px;
+  color: #215a39;
+  font-size: 20px;
+}
+
+.help-screen,
+.getaccess {
+  min-height: 100dvh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 24px;
+  color: #d4dbe9;
+}
+
+.bios {
+  min-height: 100dvh;
+  padding: 70px 76px;
+  background: #080a9a;
+  color: #d4dbe9;
+  font-size: 24px;
+}
+
+.bios h1,
+.power-screen h1 {
+  font-size: 28px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.bios p {
+  margin: 5px 0;
+}
+
+.messages {
+  margin: 55px 0;
+  min-height: 210px;
+}
+
+.crt::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.25) 3px,
+    rgba(0, 0, 0, 0.25) 4px
+  );
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.progress-bar {
+  display: flex;
+  gap: 3px;
+  padding: 6px;
+  background: #c0c0c0;
+  border: 3px inset #ddd;
+  width: min(520px, 70vw);
+  height: 32px;
+}
+
+.progress-bar span {
+  flex: 1;
+  background: #d4d0c8;
+}
+
+.progress-bar .filled {
+  background: #000080;
+}
+
+.mascot {
+  width: 100px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.power-screen {
+  min-height: 100dvh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  gap: 25px;
+}
+
+.power-screen button {
+  padding: 10px 20px;
+  background: #c0c0c0;
+  border: 3px outset #ddd;
+}
+
+.glitch-screen {
+  min-height: 100dvh;
+  background: #03030a;
+}
+
+@media (max-width: 700px) {
+  .desktop .window {
+    min-height: 0;
+  }
+
+  .desktop .window-main {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .desktop .brand-panel {
+    grid-row: 1;
+    min-height: 11rem;
+  }
+
+  .desktop .logo {
+    width: min(100%, 20rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mascot {
+    animation: none;
+  }
+}

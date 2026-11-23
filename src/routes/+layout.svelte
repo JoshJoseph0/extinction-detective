@@ -1,5 +1,6 @@
 <script>
-  import "../app.css";
+  import "../boot.css";
+  import "../desktop.css";
 
   import "@fontsource/vt323";
   import "@fontsource/pixelify-sans";
