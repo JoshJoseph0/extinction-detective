@@ -1,10 +1,6 @@
 <script lang="ts">
-  import SystemHelp from "#lib/components/startup/SystemHelp.svelte";
-<<<<<<< Updated upstream
-  import Access from "#lib/components/startup/Access.svelte";
-=======
-  import GetAccess from "./GetAccess.svelte";
->>>>>>> Stashed changes
+  import SystemHelp from "./startup/SystemHelp.svelte";
+  import Access from "./startup/Access.svelte";
 
   let username = $state("");
   let accessCode = $state("");
@@ -56,14 +52,8 @@
             />
             <div>
               <button type="submit">Log In</button>
-<<<<<<< Updated upstream
               <button type="button" onclick={openSystemHelp}>System Help</button>
               <button type="button" onclick={openAccess}>Get Access</button>
-=======
-              <button type="button" onclick={openSystemHelp}>System Help</button
-              >
-              <button type="button" onclick={GetAccess}>Get Accsess</button>
->>>>>>> Stashed changes
             </div>
           </form>
         </div>
@@ -83,8 +73,6 @@
     </div>
   {/if}
 </div>
-<<<<<<< Updated upstream
-=======
 
 <style>
   .desktop {
@@ -200,4 +188,3 @@
     }
   }
 </style>
->>>>>>> Stashed changes

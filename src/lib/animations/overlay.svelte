@@ -1,11 +1,11 @@
 
-<script>
+<script lang="ts">
   import { gsap } from 'gsap';
 
-  let { screen = null } = $props();
-  let previousScreen = screen;
-  let staticEl;
-  let noiseCanvas;
+  let { screen = null }: { screen?: string | null } = $props();
+  let previousScreen: string | null | undefined;
+  let staticEl: HTMLDivElement;
+  let noiseCanvas: HTMLCanvasElement;
 
   function drawNoise() {
     if (!noiseCanvas) return;
@@ -62,6 +62,11 @@
 
   $effect(() => {
     const nextScreen = screen;
+    if (previousScreen === undefined) {
+      previousScreen = nextScreen;
+      return;
+    }
+
     if (nextScreen === previousScreen) return;
 
     previousScreen = nextScreen;

@@ -162,9 +162,6 @@ let started = false;
     {/if}
   </div>
 {/if}
-<<<<<<< Updated upstream
-=======
-
 <style>
   .bios {
     min-height: 100dvh;
@@ -268,4 +265,3 @@ let started = false;
     }
   }
 </style>
->>>>>>> Stashed changes
