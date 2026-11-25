@@ -119,7 +119,11 @@ let started = false;
 
 {#if stage === "off"}
   <div class="power-screen">
-    <h1>Afterlight Systems</h1>
+    <img
+      id="logo-on-power"
+      src="/images/afterlight-wordmark-cream.svg"
+      alt="Afterlight Systems"
+    />
 
     <button onclick={powerOn}> POWER ON </button>
   </div>
@@ -158,3 +162,110 @@ let started = false;
     {/if}
   </div>
 {/if}
+<<<<<<< Updated upstream
+=======
+
+<style>
+  .bios {
+    min-height: 100dvh;
+    padding: 70px 76px;
+    background: #080a9a;
+    color: #d4dbe9;
+    font-size: 24px;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: normal;
+    margin: 0;
+  }
+
+  p {
+    margin: 5px 0;
+  }
+  #logo-on-power {
+    width: 20rem;
+    opacity: 0.7;
+  }
+
+  .messages {
+    margin: 55px 0;
+    min-height: 210px;
+  }
+
+  .crt::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+
+    background: repeating-linear-gradient(
+      transparent 0px,
+      transparent 2px,
+      rgba(0, 0, 0, 0.25) 3px,
+      rgba(0, 0, 0, 0.25) 4px
+    );
+  }
+
+  .loading-container {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .progress-bar {
+    display: flex;
+    gap: 3px;
+    padding: 6px;
+    background: #c0c0c0;
+    border: 3px inset #ddd;
+    width: min(520px, 70vw);
+    height: 32px;
+  }
+
+  .progress-bar span {
+    flex: 1;
+    background: #d4d0c8;
+  }
+
+  .progress-bar .filled {
+    background: #000080;
+  }
+
+  .mascot {
+    width: 100px;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .power-screen {
+    min-height: 100dvh;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    gap: 25px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background: #c0c0c0;
+    border: 3px outset #ddd;
+  }
+
+  .glitch-screen {
+    min-height: 100dvh;
+    background: #03030a;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mascot {
+      animation: none;
+    }
+  }
+</style>
+>>>>>>> Stashed changes
