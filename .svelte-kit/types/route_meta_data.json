@@ -1,0 +1,12 @@
+{
+	"/": [],
+	"/api/register": [
+		"src/routes/api/register/+server.ts"
+	],
+	"/api/test-db": [
+		"src/routes/api/test-db/+server.ts"
+	],
+	"/terminal": [
+		"src/routes/terminal/+page.server.ts"
+	]
+}

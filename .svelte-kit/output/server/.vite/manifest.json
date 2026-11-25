@@ -1,0 +1,281 @@
+{
+  ".svelte-kit/generated/build/env/config.js": {
+    "file": "env.js",
+    "name": "env",
+    "src": ".svelte-kit/generated/build/env/config.js",
+    "isEntry": true,
+    "imports": [
+      "_config.js"
+    ]
+  },
+  "_config.js": {
+    "file": "chunks/config.js",
+    "name": "config"
+  },
+  "_index-server.js": {
+    "file": "chunks/index-server.js",
+    "name": "index-server",
+    "imports": [
+      "_server2.js"
+    ]
+  },
+  "_internal.js": {
+    "file": "chunks/internal.js",
+    "name": "internal",
+    "imports": [
+      "_server-errors.js"
+    ],
+    "dynamicImports": [
+      "src/hooks.server.ts"
+    ]
+  },
+  "_mongodb.js": {
+    "file": "chunks/mongodb.js",
+    "name": "mongodb",
+    "imports": [
+      "_config.js"
+    ]
+  },
+  "_server-errors.js": {
+    "file": "chunks/server-errors.js",
+    "name": "server-errors"
+  },
+  "_server.js": {
+    "file": "chunks/server.js",
+    "name": "server"
+  },
+  "_server2.js": {
+    "file": "chunks/server2.js",
+    "name": "server"
+  },
+  "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-cyrillic-400-normal.woff": {
+    "file": "_app/immutable/assets/ibm-plex-mono-cyrillic-400-normal.CEL4l2ZJ.woff",
+    "src": "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-cyrillic-400-normal.woff"
+  },
+  "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-cyrillic-400-normal.woff2": {
+    "file": "_app/immutable/assets/ibm-plex-mono-cyrillic-400-normal.BSMlKf0J.woff2",
+    "src": "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-cyrillic-400-normal.woff2"
+  },
+  "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-cyrillic-ext-400-normal.woff": {
+    "file": "_app/immutable/assets/ibm-plex-mono-cyrillic-ext-400-normal.DMdlQ8Kv.woff",
+    "src": "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-cyrillic-ext-400-normal.woff"
+  },
+  "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-cyrillic-ext-400-normal.woff2": {
+    "file": "_app/immutable/assets/ibm-plex-mono-cyrillic-ext-400-normal.xuaO2J-f.woff2",
+    "src": "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-cyrillic-ext-400-normal.woff2"
+  },
+  "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff": {
+    "file": "_app/immutable/assets/ibm-plex-mono-latin-400-normal.CvHOgSBP.woff",
+    "src": "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff"
+  },
+  "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2": {
+    "file": "_app/immutable/assets/ibm-plex-mono-latin-400-normal.DMJ8VG8y.woff2",
+    "src": "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2"
+  },
+  "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-ext-400-normal.woff": {
+    "file": "_app/immutable/assets/ibm-plex-mono-latin-ext-400-normal.D3D2R8hC.woff",
+    "src": "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-ext-400-normal.woff"
+  },
+  "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-ext-400-normal.woff2": {
+    "file": "_app/immutable/assets/ibm-plex-mono-latin-ext-400-normal.BmRBH3aV.woff2",
+    "src": "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-ext-400-normal.woff2"
+  },
+  "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-vietnamese-400-normal.woff": {
+    "file": "_app/immutable/assets/ibm-plex-mono-vietnamese-400-normal.DDuiU_S-.woff",
+    "src": "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-vietnamese-400-normal.woff"
+  },
+  "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-vietnamese-400-normal.woff2": {
+    "file": "_app/immutable/assets/ibm-plex-mono-vietnamese-400-normal.BulugwFq.woff2",
+    "src": "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-vietnamese-400-normal.woff2"
+  },
+  "node_modules/@fontsource/pixelify-sans/files/pixelify-sans-cyrillic-400-normal.woff": {
+    "file": "_app/immutable/assets/pixelify-sans-cyrillic-400-normal.DfOZNMlW.woff",
+    "src": "node_modules/@fontsource/pixelify-sans/files/pixelify-sans-cyrillic-400-normal.woff"
+  },
+  "node_modules/@fontsource/pixelify-sans/files/pixelify-sans-latin-400-normal.woff": {
+    "file": "_app/immutable/assets/pixelify-sans-latin-400-normal.JapMNN6Z.woff",
+    "src": "node_modules/@fontsource/pixelify-sans/files/pixelify-sans-latin-400-normal.woff"
+  },
+  "node_modules/@fontsource/pixelify-sans/files/pixelify-sans-latin-400-normal.woff2": {
+    "file": "_app/immutable/assets/pixelify-sans-latin-400-normal.DLrIX9QE.woff2",
+    "src": "node_modules/@fontsource/pixelify-sans/files/pixelify-sans-latin-400-normal.woff2"
+  },
+  "node_modules/@fontsource/pixelify-sans/files/pixelify-sans-latin-ext-400-normal.woff": {
+    "file": "_app/immutable/assets/pixelify-sans-latin-ext-400-normal.BkfTUL4s.woff",
+    "src": "node_modules/@fontsource/pixelify-sans/files/pixelify-sans-latin-ext-400-normal.woff"
+  },
+  "node_modules/@fontsource/pixelify-sans/files/pixelify-sans-latin-ext-400-normal.woff2": {
+    "file": "_app/immutable/assets/pixelify-sans-latin-ext-400-normal.DdH6zlBQ.woff2",
+    "src": "node_modules/@fontsource/pixelify-sans/files/pixelify-sans-latin-ext-400-normal.woff2"
+  },
+  "node_modules/@fontsource/vt323/files/vt323-latin-400-normal.woff": {
+    "file": "_app/immutable/assets/vt323-latin-400-normal.Dqn9ZSPj.woff",
+    "src": "node_modules/@fontsource/vt323/files/vt323-latin-400-normal.woff"
+  },
+  "node_modules/@fontsource/vt323/files/vt323-latin-400-normal.woff2": {
+    "file": "_app/immutable/assets/vt323-latin-400-normal.wDgJuOC9.woff2",
+    "src": "node_modules/@fontsource/vt323/files/vt323-latin-400-normal.woff2"
+  },
+  "node_modules/@fontsource/vt323/files/vt323-latin-ext-400-normal.woff": {
+    "file": "_app/immutable/assets/vt323-latin-ext-400-normal.DqOq58ri.woff",
+    "src": "node_modules/@fontsource/vt323/files/vt323-latin-ext-400-normal.woff"
+  },
+  "node_modules/@fontsource/vt323/files/vt323-latin-ext-400-normal.woff2": {
+    "file": "_app/immutable/assets/vt323-latin-ext-400-normal.iUdYUaX4.woff2",
+    "src": "node_modules/@fontsource/vt323/files/vt323-latin-ext-400-normal.woff2"
+  },
+  "node_modules/@fontsource/vt323/files/vt323-vietnamese-400-normal.woff": {
+    "file": "_app/immutable/assets/vt323-vietnamese-400-normal.D_5Q7Vcv.woff",
+    "src": "node_modules/@fontsource/vt323/files/vt323-vietnamese-400-normal.woff"
+  },
+  "node_modules/@fontsource/vt323/files/vt323-vietnamese-400-normal.woff2": {
+    "file": "_app/immutable/assets/vt323-vietnamese-400-normal.D0VnvwZ9.woff2",
+    "src": "node_modules/@fontsource/vt323/files/vt323-vietnamese-400-normal.woff2"
+  },
+  "node_modules/@sveltejs/kit/src/runtime/app/server/remote/index.js": {
+    "file": "remote-entry.js",
+    "name": "remote-entry",
+    "src": "node_modules/@sveltejs/kit/src/runtime/app/server/remote/index.js",
+    "isEntry": true,
+    "imports": [
+      "_server-errors.js",
+      "_internal.js",
+      "_server.js"
+    ]
+  },
+  "node_modules/@sveltejs/kit/src/runtime/components/error.svelte": {
+    "file": "entries/fallbacks/error.svelte.js",
+    "name": "entries/fallbacks/error.svelte",
+    "src": "node_modules/@sveltejs/kit/src/runtime/components/error.svelte",
+    "isEntry": true,
+    "imports": [
+      "_server2.js",
+      "_index-server.js",
+      "_server-errors.js"
+    ]
+  },
+  "node_modules/@sveltejs/kit/src/runtime/server/index.js": {
+    "file": "index.js",
+    "name": "index",
+    "src": "node_modules/@sveltejs/kit/src/runtime/server/index.js",
+    "isEntry": true,
+    "imports": [
+      "_server.js",
+      "_internal.js"
+    ],
+    "dynamicImports": [
+      "node_modules/@sveltejs/kit/src/runtime/server/instance.js"
+    ]
+  },
+  "node_modules/@sveltejs/kit/src/runtime/server/instance.js": {
+    "file": "chunks/instance.js",
+    "name": "instance",
+    "src": "node_modules/@sveltejs/kit/src/runtime/server/instance.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_internal.js",
+      "_server-errors.js",
+      "_config.js",
+      "_server2.js"
+    ]
+  },
+  "node_modules/better-auth/dist/adapters/kysely-adapter/index.mjs": {
+    "file": "chunks/kysely-adapter.js",
+    "name": "kysely-adapter",
+    "src": "node_modules/better-auth/dist/adapters/kysely-adapter/index.mjs",
+    "isDynamicEntry": true
+  },
+  "src/hooks.server.ts": {
+    "file": "entries/hooks.server.js",
+    "name": "entries/hooks.server",
+    "src": "src/hooks.server.ts",
+    "isEntry": true,
+    "imports": [
+      "_server.js"
+    ],
+    "dynamicImports": [
+      "src/lib/server/auth.ts"
+    ]
+  },
+  "src/lib/server/auth.ts": {
+    "file": "chunks/auth.js",
+    "name": "auth",
+    "src": "src/lib/server/auth.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "_mongodb.js"
+    ],
+    "dynamicImports": [
+      "node_modules/better-auth/dist/adapters/kysely-adapter/index.mjs"
+    ]
+  },
+  "src/routes/+layout.svelte": {
+    "file": "entries/pages/_layout.svelte.js",
+    "name": "entries/pages/_layout.svelte",
+    "src": "src/routes/+layout.svelte",
+    "isEntry": true,
+    "imports": [
+      "_server2.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_layout.CIEO5rPy.css"
+    ],
+    "assets": [
+      "_app/immutable/assets/vt323-vietnamese-400-normal.D0VnvwZ9.woff2",
+      "_app/immutable/assets/vt323-vietnamese-400-normal.D_5Q7Vcv.woff",
+      "_app/immutable/assets/vt323-latin-ext-400-normal.iUdYUaX4.woff2",
+      "_app/immutable/assets/vt323-latin-ext-400-normal.DqOq58ri.woff",
+      "_app/immutable/assets/vt323-latin-400-normal.wDgJuOC9.woff2",
+      "_app/immutable/assets/vt323-latin-400-normal.Dqn9ZSPj.woff",
+      "_app/immutable/assets/pixelify-sans-cyrillic-400-normal.DfOZNMlW.woff",
+      "_app/immutable/assets/pixelify-sans-latin-ext-400-normal.DdH6zlBQ.woff2",
+      "_app/immutable/assets/pixelify-sans-latin-ext-400-normal.BkfTUL4s.woff",
+      "_app/immutable/assets/pixelify-sans-latin-400-normal.DLrIX9QE.woff2",
+      "_app/immutable/assets/pixelify-sans-latin-400-normal.JapMNN6Z.woff",
+      "_app/immutable/assets/ibm-plex-mono-cyrillic-ext-400-normal.xuaO2J-f.woff2",
+      "_app/immutable/assets/ibm-plex-mono-cyrillic-ext-400-normal.DMdlQ8Kv.woff",
+      "_app/immutable/assets/ibm-plex-mono-cyrillic-400-normal.BSMlKf0J.woff2",
+      "_app/immutable/assets/ibm-plex-mono-cyrillic-400-normal.CEL4l2ZJ.woff",
+      "_app/immutable/assets/ibm-plex-mono-vietnamese-400-normal.BulugwFq.woff2",
+      "_app/immutable/assets/ibm-plex-mono-vietnamese-400-normal.DDuiU_S-.woff",
+      "_app/immutable/assets/ibm-plex-mono-latin-ext-400-normal.BmRBH3aV.woff2",
+      "_app/immutable/assets/ibm-plex-mono-latin-ext-400-normal.D3D2R8hC.woff",
+      "_app/immutable/assets/ibm-plex-mono-latin-400-normal.DMJ8VG8y.woff2",
+      "_app/immutable/assets/ibm-plex-mono-latin-400-normal.CvHOgSBP.woff"
+    ]
+  },
+  "src/routes/+page.svelte": {
+    "file": "entries/pages/_page.svelte.js",
+    "name": "entries/pages/_page.svelte",
+    "src": "src/routes/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_server2.js",
+      "_index-server.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.CzB5-_Z3.css"
+    ]
+  },
+  "src/routes/api/register/+server.ts": {
+    "file": "entries/endpoints/api/register/_server.ts.js",
+    "name": "entries/endpoints/api/register/_server.ts",
+    "src": "src/routes/api/register/+server.ts",
+    "isEntry": true,
+    "imports": [
+      "_mongodb.js"
+    ],
+    "dynamicImports": [
+      "src/lib/server/auth.ts"
+    ]
+  },
+  "src/routes/api/test-db/+server.ts": {
+    "file": "entries/endpoints/api/test-db/_server.ts.js",
+    "name": "entries/endpoints/api/test-db/_server.ts",
+    "src": "src/routes/api/test-db/+server.ts",
+    "isEntry": true,
+    "imports": [
+      "_mongodb.js"
+    ]
+  }
+}

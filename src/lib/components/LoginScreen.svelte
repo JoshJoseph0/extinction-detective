@@ -1,16 +1,39 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
   import SystemHelp from "./startup/SystemHelp.svelte";
   import Access from "./startup/Access.svelte";
-
+  import { authClient } from "../auth-client";
   let username = $state("");
   let accessCode = $state("");
   let showSystemHelp = $state(false);
   let showAccess = $state(false);
+  let errorMessage = $state("");
+  let loading = $state(false);
 
-  function login(event: SubmitEvent) {
+  async function login(event: SubmitEvent) {
     event.preventDefault();
-  }
 
+    loading = true;
+    errorMessage = "";
+
+    try {
+      const { data, error } = await authClient.signIn.email({
+        email: username.trim().toLowerCase(),
+        password: accessCode.trim(),
+      });
+
+      if (error) {
+        errorMessage = "Invalid email or access code";
+        return;
+      }
+
+      await goto("/terminal");
+    } catch {
+      errorMessage = "Unable to connect to Afterlight";
+    } finally {
+      loading = false;
+    }
+  }
   function openSystemHelp() {
     showSystemHelp = true;
   }
@@ -51,8 +74,11 @@
               required
             />
             <div>
-              <button type="submit">Log In</button>
-              <button type="button" onclick={openSystemHelp}>System Help</button>
+              <button type="submit" disabled={loading}>
+                {loading ? "Authenticating..." : "Log In"}
+              </button>
+              <button type="button" onclick={openSystemHelp}>System Help</button
+              >
               <button type="button" onclick={openAccess}>Get Access</button>
             </div>
           </form>
