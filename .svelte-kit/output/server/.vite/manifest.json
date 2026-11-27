@@ -8,9 +8,34 @@
       "_config.js"
     ]
   },
+  "_auth-client.js": {
+    "file": "chunks/auth-client.js",
+    "name": "auth-client",
+    "imports": [
+      "_url.js"
+    ]
+  },
+  "_auth.js": {
+    "file": "chunks/auth.js",
+    "name": "auth",
+    "imports": [
+      "_url.js",
+      "_mongodb.js"
+    ],
+    "dynamicImports": [
+      "node_modules/better-auth/dist/adapters/kysely-adapter/index.mjs"
+    ]
+  },
   "_config.js": {
     "file": "chunks/config.js",
     "name": "config"
+  },
+  "_functions.js": {
+    "file": "chunks/functions.js",
+    "name": "functions",
+    "imports": [
+      "_server-errors.js"
+    ]
   },
   "_index-server.js": {
     "file": "chunks/index-server.js",
@@ -23,7 +48,8 @@
     "file": "chunks/internal.js",
     "name": "internal",
     "imports": [
-      "_server-errors.js"
+      "_server-errors.js",
+      "_functions.js"
     ],
     "dynamicImports": [
       "src/hooks.server.ts"
@@ -34,6 +60,13 @@
     "name": "mongodb",
     "imports": [
       "_config.js"
+    ]
+  },
+  "_navigation.js": {
+    "file": "chunks/navigation.js",
+    "name": "navigation",
+    "imports": [
+      "_functions.js"
     ]
   },
   "_server-errors.js": {
@@ -47,6 +80,10 @@
   "_server2.js": {
     "file": "chunks/server2.js",
     "name": "server"
+  },
+  "_url.js": {
+    "file": "chunks/url.js",
+    "name": "url"
   },
   "node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-cyrillic-400-normal.woff": {
     "file": "_app/immutable/assets/ibm-plex-mono-cyrillic-400-normal.CEL4l2ZJ.woff",
@@ -140,6 +177,7 @@
     "imports": [
       "_server-errors.js",
       "_internal.js",
+      "_functions.js",
       "_server.js"
     ]
   },
@@ -173,10 +211,12 @@
     "src": "node_modules/@sveltejs/kit/src/runtime/server/instance.js",
     "isDynamicEntry": true,
     "imports": [
+      "_functions.js",
       "_internal.js",
       "_server-errors.js",
       "_config.js",
-      "_server2.js"
+      "_server2.js",
+      "_navigation.js"
     ]
   },
   "node_modules/better-auth/dist/adapters/kysely-adapter/index.mjs": {
@@ -194,19 +234,7 @@
       "_server.js"
     ],
     "dynamicImports": [
-      "src/lib/server/auth.ts"
-    ]
-  },
-  "src/lib/server/auth.ts": {
-    "file": "chunks/auth.js",
-    "name": "auth",
-    "src": "src/lib/server/auth.ts",
-    "isDynamicEntry": true,
-    "imports": [
-      "_mongodb.js"
-    ],
-    "dynamicImports": [
-      "node_modules/better-auth/dist/adapters/kysely-adapter/index.mjs"
+      "_auth.js"
     ]
   },
   "src/routes/+layout.svelte": {
@@ -251,10 +279,12 @@
     "isEntry": true,
     "imports": [
       "_server2.js",
-      "_index-server.js"
+      "_index-server.js",
+      "_navigation.js",
+      "_auth-client.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.CzB5-_Z3.css"
+      "_app/immutable/assets/_page.DMl0bqCK.css"
     ]
   },
   "src/routes/api/register/+server.ts": {
@@ -266,7 +296,7 @@
       "_mongodb.js"
     ],
     "dynamicImports": [
-      "src/lib/server/auth.ts"
+      "_auth.js"
     ]
   },
   "src/routes/api/test-db/+server.ts": {
@@ -276,6 +306,29 @@
     "isEntry": true,
     "imports": [
       "_mongodb.js"
+    ]
+  },
+  "src/routes/terminal/+page.server.ts": {
+    "file": "entries/pages/terminal/_page.server.ts.js",
+    "name": "entries/pages/terminal/_page.server.ts",
+    "src": "src/routes/terminal/+page.server.ts",
+    "isEntry": true,
+    "imports": [
+      "_auth.js"
+    ]
+  },
+  "src/routes/terminal/+page.svelte": {
+    "file": "entries/pages/terminal/_page.svelte.js",
+    "name": "entries/pages/terminal/_page.svelte",
+    "src": "src/routes/terminal/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_server2.js",
+      "_auth-client.js",
+      "_navigation.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.DA1EEZRp.css"
     ]
   }
 }

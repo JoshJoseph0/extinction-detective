@@ -1271,6 +1271,14 @@ function attributes(attrs, css_hash, classes, styles, flags = 0) {
 	return attr_str;
 }
 /**
+* @param {any} value
+* @param {Record<string,any>|[Record<string,any>,Record<string,any>]} [directives]
+*/
+function attr_style(value, directives) {
+	var result = to_style(value, directives);
+	return result ? ` style="${escape_html(result, true)}"` : "";
+}
+/**
 * @template V
 * @param {() => V} get_value
 */
@@ -1296,6 +1304,6 @@ function derived(fn) {
 		return updated_value;
 	};
 }
-export { attr as a, ssr_context as i, render as n, escape_html as o, getContext as r, derived as t };
+export { ssr_context as a, getContext as i, derived as n, attr as o, render as r, escape_html as s, attr_style as t };
 
 //# sourceMappingURL=server2.js.map

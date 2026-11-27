@@ -81,7 +81,7 @@
     {onBack}
   />
 {:else}
-  <div class="desktop">
+  <div class="access-screen">
     <div class="window">
       <div class="title-bar">Afterlight Sign Up System</div>
 
@@ -122,21 +122,19 @@
 {/if}
 
 <style>
-  .desktop {
-    min-height: 100dvh;
+  .access-screen {
+    width: min(100%, 800px);
+    min-width: 0;
     display: grid;
     place-items: center;
-    padding: clamp(16px, 4vw, 48px);
-    background:
-      url("/images/login-background.png") center / cover no-repeat,
-      radial-gradient(#172b55, #040410);
     color: #111318;
   }
 
-  .window {
+  .access-screen .window {
     display: grid;
     grid-template-rows: auto minmax(0, 1fr) auto;
     width: min(100%, 800px);
+    min-height: 0;
     background: #c0c0c0;
     border: 4px outset #ddd;
     padding: 3px;
@@ -157,6 +155,15 @@
   .content {
     padding: clamp(20px, 3vw, 36px);
     font-size: 20px;
+  }
+
+  h2 {
+    margin: 0 0 12px;
+    font-weight: normal;
+  }
+
+  .content > p {
+    margin: 0 0 20px;
   }
 
   form {
@@ -194,13 +201,16 @@
 
   .status {
     display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
     border-top: 2px groove #ddd;
     padding: 10px;
     color: #215a39;
   }
 
   h3 {
-    padding: 10px;
+    margin: 0;
+    padding: 0;
     font-size: 16px;
   }
 </style>

@@ -3,12 +3,20 @@
   import SystemHelp from "./startup/SystemHelp.svelte";
   import Access from "./startup/Access.svelte";
   import { authClient } from "../auth-client";
+  import AfterlightAnimation from "./AfterlightAnimation.svelte";
   let username = $state("");
   let accessCode = $state("");
   let showSystemHelp = $state(false);
   let showAccess = $state(false);
   let errorMessage = $state("");
   let loading = $state(false);
+  let emailFocused = $state(false);
+  const mascotAnimation = $derived(
+    loading ? "thinking" : errorMessage ? "thumbs-down" : emailFocused ? "searching" : "idle"
+  );
+  const mascotDescription = $derived(
+    loading ? "Mr Planet checking your credentials" : errorMessage ? "Mr Planet giving a thumbs down" : emailFocused ? "Mr Planet looking around" : "Mr Planet waiting to welcome you"
+  );
 
   async function login(event: SubmitEvent) {
     event.preventDefault();
@@ -44,6 +52,9 @@
 </script>
 
 <div class="desktop">
+  <div class="login-static" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
   {#if showSystemHelp}
     <SystemHelp onBack={() => (showSystemHelp = false)} />
   {:else if showAccess}
@@ -63,6 +74,11 @@
               id="username"
               bind:value={username}
               autocomplete="username"
+              onfocus={() => (emailFocused = true)}
+              onblur={() => (emailFocused = false)}
+              oninput={() => (errorMessage = "")}
+              aria-invalid={errorMessage ? true : undefined}
+              aria-describedby={errorMessage ? "login-error" : undefined}
               required
             />
 
@@ -71,8 +87,14 @@
               id="access-code"
               bind:value={accessCode}
               autocomplete="off"
+              oninput={() => (errorMessage = "")}
+              aria-invalid={errorMessage ? true : undefined}
+              aria-describedby={errorMessage ? "login-error" : undefined}
               required
             />
+            {#if errorMessage}
+              <p id="login-error" class="login-error" role="alert">{errorMessage}</p>
+            {/if}
             <div>
               <button type="submit" disabled={loading}>
                 {loading ? "Authenticating..." : "Log In"}
@@ -84,11 +106,13 @@
           </form>
         </div>
         <div class="brand-panel">
-          <img
-            class="logo"
-            src="/images/afterlight-logo-transparent.png"
-            alt="Afterlight logo"
-          />
+          <div class="login-mascot">
+            <AfterlightAnimation
+              name={mascotAnimation}
+              alt={mascotDescription}
+              width="100%"
+            />
+          </div>
         </div>
       </div>
 
@@ -102,15 +126,66 @@
 
 <style>
   .desktop {
+    position: relative;
+    isolation: isolate;
     min-height: 100dvh;
     display: grid;
-    background:
-      url("/images/login-background.png") center / cover no-repeat,
-      radial-gradient(#172b55, #040410);
 
     place-items: center;
     padding: clamp(16px, 4vw, 48px);
     color: #111318;
+  }
+
+  .login-static {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .login-static span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    opacity: 0.16;
+    background: linear-gradient(
+      to right,
+      transparent,
+      #83c9a5 25%,
+      #c3e3cf 55%,
+      transparent
+    );
+    animation: static-drift 12s linear infinite;
+  }
+
+  .login-static span::after {
+    content: "";
+    position: absolute;
+    inset: -5px 0;
+    background: url("/images/tv-static.svg") repeat;
+    opacity: 0.3;
+  }
+
+  .login-static span:nth-child(2) {
+    animation-delay: -4s;
+    opacity: 0.09;
+  }
+
+  .login-static span:nth-child(3) {
+    animation-delay: -8s;
+    opacity: 0.12;
+  }
+
+  @keyframes static-drift {
+    from { transform: translateY(-10vh); }
+    to { transform: translateY(110vh); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .login-static { display: none; }
   }
 
   .window {
@@ -143,16 +218,26 @@
 
   .brand-panel {
     display: grid;
-    place-items: center;
+    place-content: center;
+    justify-items: center;
+    gap: 16px;
     min-width: 0;
     padding: 24px;
   }
 
-  .logo {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  .login-mascot {
+    width: min(100%, 340px);
+    aspect-ratio: 880 / 680;
+    line-height: 0;
+  }
+
+  .login-error {
+    margin: 0;
+    padding: 10px;
+    border: 2px solid #9c1c1c;
+    background: #fff0f0;
+    color: #721212;
+    font-size: 20px;
   }
 
   h2 {
@@ -209,8 +294,8 @@
       min-height: 11rem;
     }
 
-    .logo {
-      width: min(100%, 20rem);
+    .login-mascot {
+      width: min(100%, 180px);
     }
   }
 </style>

@@ -1,8 +1,12 @@
 .desktop {
   min-height: 100dvh;
-  background:
-    url("/images/login-background.png") center / cover no-repeat,
-    radial-gradient(#172b55, #040410);
+  background: radial-gradient(
+    ellipse at 50% 48%,
+    #032b30 0%,
+    #001f20 42%,
+    #00100f 74%,
+    #000504 100%
+  );
   display: grid;
   place-items: center;
   padding: clamp(16px, 4vw, 48px);

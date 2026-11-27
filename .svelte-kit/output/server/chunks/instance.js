@@ -1,7 +1,9 @@
-import { A as BODY_DEPENDENT_METHODS, At as relative_pathname, Bt as strip_resolution_suffix, C as has_prerendered_path, Ct as get_hooks, D as serialize_uses, Dt as disable_search, E as redirect_response, Et as decode_pathname, F as REROUTED_URL_HEADER, Ft as add_data_suffix, Ht as stream_text, It as add_resolution_suffix, Kt as app_dir, L as default_handle_error, Lt as has_data_suffix, M as IN_WEBCONTAINER, Mt as find_route, Nt as invalid_export, O as throw_devalue_error, Ot as make_trackable, P as PAGE_METHODS, Pt as invalid_export_location, Q as TRAILING_SLASH_PARAM, R as handle_error_and_jsonify, Rt as has_resolution_suffix, S as get_node_type, St as once, T as method_not_allowed, Ut as text_encoder, Vt as base64_encode, X as normalize_error, Y as get_status, Z as INVALIDATED_PARAM, _ as handle_action_request, a as set_hooks, at as encoders, b as uneval_action_response, bt as disallow_on_server, d as get_remote_action, dt as is_form_content_type, et as fetch_cache_url, f as get_remote_id, ft as negotiate, g as handle_action_json_request, h as action_json_redirect, i as read_implementation, j as ENDPOINT_METHODS, jt as resolve, k as with_version_header, kt as normalize_path, m as handle_remote_form_post, n as hooks, ot as has_custom_transporters, p as handle_remote_call, qt as assets, r as manifest, st as init_transport, u as collect_remote_data, ut as uneval, v as is_action_json_request, w as is_prerendering, wt as options, xt as noop, y as is_action_request, zt as strip_data_suffix } from "./internal.js";
+import { n as noop, r as once } from "./functions.js";
+import { A as BODY_DEPENDENT_METHODS, At as invalid_export, Bt as text_encoder, C as has_prerendered_path, Ct as decode_pathname, D as serialize_uses, Dt as relative_pathname, E as redirect_response, Et as normalize_path, F as REROUTED_URL_HEADER, Ft as has_resolution_suffix, It as strip_data_suffix, L as default_handle_error, Lt as strip_resolution_suffix, M as IN_WEBCONTAINER, Mt as add_data_suffix, Nt as add_resolution_suffix, O as throw_devalue_error, Ot as resolve, P as PAGE_METHODS, Pt as has_data_suffix, Q as TRAILING_SLASH_PARAM, R as handle_error_and_jsonify, Rt as base64_encode, S as get_node_type, T as method_not_allowed, Tt as make_trackable, Ut as app_dir, Wt as assets, X as normalize_error, Y as get_status, Z as INVALIDATED_PARAM, _ as handle_action_request, a as set_hooks, at as encoders, b as uneval_action_response, bt as get_hooks, d as get_remote_action, dt as is_form_content_type, et as fetch_cache_url, f as get_remote_id, ft as negotiate, g as handle_action_json_request, h as action_json_redirect, i as read_implementation, j as ENDPOINT_METHODS, jt as invalid_export_location, k as with_version_header, kt as find_route, m as handle_remote_form_post, n as hooks, ot as has_custom_transporters, p as handle_remote_call, r as manifest, st as init_transport, u as collect_remote_data, ut as uneval, v as is_action_json_request, w as is_prerendering, wt as disable_search, xt as options, y as is_action_request, zt as stream_text } from "./internal.js";
 import { C as prerender_endpoint_methods, E as prerender_template_nonce, G as set_headers_after_response, K as set_headers_cookie, S as prerender_actions, T as prerender_nonce, X as capture_error, _ as load_fetch_cors, b as load_promise_not_serializable, c as client_address_unsupported, d as cookies_set_after_response, f as csp_report_only_missing_report, g as header_already_set, p as endpoint_invalid_response, u as cookies_serialize_before_route, w as prerender_endpoint_not_prerenderable, x as load_response_header_not_serialized } from "./server-errors.js";
 import { i as set_env, n as explicit_public_env, r as rendered_env } from "./config.js";
-import { n as render, o as escape_html$1, t as derived } from "./server2.js";
+import { n as derived, r as render, s as escape_html$1 } from "./server2.js";
+import { t as afterNavigate } from "./navigation.js";
 import { isRedirect, text } from "@sveltejs/kit";
 import { Redirect, SvelteKitError } from "@sveltejs/kit/internal";
 import { merge_tracing, otel, record_span, with_request_store } from "@sveltejs/kit/internal/server";
@@ -212,7 +214,7 @@ function server_data_serializer(event, state) {
 	let promise_id = 1;
 	let max_nodes = -1;
 	const iterator = create_async_iterator();
-	const global = "__sveltekit_ll6n5p";
+	const global = "__sveltekit_1jtor5r";
 	/** @param {number} index */
 	function get_replacer(index) {
 		/** @param {any} thing */
@@ -1181,17 +1183,6 @@ function mix(hash, word) {
 	hash = hash << 13 | hash >>> 19;
 	return Math.imul(hash, 5) + 3864292196 | 0;
 }
-// node_modules/@sveltejs/kit/src/runtime/app/navigation/server.js
-var afterNavigate = noop;
-disallow_on_server("disableScrollHandling", "()");
-disallow_on_server("goto");
-disallow_on_server("invalidate");
-disallow_on_server("invalidateAll", "()");
-disallow_on_server("refreshAll", "()");
-disallow_on_server("preloadCode");
-disallow_on_server("preloadData");
-disallow_on_server("pushState");
-disallow_on_server("replaceState");
 // node_modules/@sveltejs/kit/src/runtime/components/root.svelte
 function Root($$renderer, $$props) {
 	$$renderer.component(($$renderer) => {
@@ -1493,7 +1484,7 @@ async function render_response({ branch, fetched, page_config, status, error = n
 			"crossorigin"
 		]);
 	}
-	const global = "__sveltekit_ll6n5p";
+	const global = "__sveltekit_1jtor5r";
 	const { data, chunks } = data_serializer.get_data(csp);
 	if (page_config.ssr && page_config.csr) body += `\n\t\t\t${fetched.map((item) => serialize_data(item, resolve_opts.filterSerializedResponseHeaders, is_prerendering(state))).join("\n			")}`;
 	if (page_config.csr && client) {
@@ -1517,7 +1508,7 @@ async function render_response({ branch, fetched, page_config, status, error = n
 			}
 		}
 		const blocks = [];
-		const properties = [`base: ${base_expression}`, `version: ${s("1795622578709")}`];
+		const properties = [`base: ${base_expression}`, `version: ${s("1795703655345")}`];
 		if (assets) properties.push(`assets: ${s(assets)}`);
 		if (client.uses_env_dynamic_public) properties.push(`env: ${load_env_eagerly ? "null" : devalue.uneval(rendered_env)}`);
 		if (chunks) {

@@ -1,4 +1,4 @@
-import { i as ssr_context } from "./server2.js";
+import { a as ssr_context } from "./server2.js";
 // node_modules/svelte/src/index-server.js
 /** @import { SSRContext } from '#server' */
 /** @import { Renderer } from './internal/server/renderer.js' */

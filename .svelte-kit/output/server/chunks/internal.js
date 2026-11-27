@@ -1,4 +1,5 @@
-import { W as server_api_unavailable, X as capture_error, Y as url_search_unavailable_prerender, h as handle_error_hook_failed, i as action_response_not_serializable, n as action_default_with_named, r as action_name_reserved, s as action_throw_fail, t as action_data_not_serializable, v as load_not_plain_object, y as load_not_serializable } from "./server-errors.js";
+import { X as capture_error, Y as url_search_unavailable_prerender, h as handle_error_hook_failed, i as action_response_not_serializable, n as action_default_with_named, r as action_name_reserved, s as action_throw_fail, t as action_data_not_serializable, v as load_not_plain_object, y as load_not_serializable } from "./server-errors.js";
+import { n as noop } from "./functions.js";
 import { error, text } from "@sveltejs/kit";
 import { ActionFailure, HandledHttpError, HttpError, Redirect, SvelteKitError, ValidationError } from "@sveltejs/kit/internal";
 import { merge_tracing, record_span, with_request_store } from "@sveltejs/kit/internal/server";
@@ -514,31 +515,6 @@ async function get_hooks() {
 */
 function depends_special_scheme(_values) {
 	console.warn("https://svelte.dev/e/kit/depends_special_scheme");
-}
-// node_modules/@sveltejs/kit/src/utils/functions.js
-function noop() {}
-/**
-* @template T
-* @param {() => T} fn
-*/
-function once(fn) {
-	let done = false;
-	/** @type T */
-	let result;
-	return () => {
-		if (done) return result;
-		done = true;
-		return result = fn();
-	};
-}
-/**
-* @param {string} name
-* @param {string} [parens]
-*/
-function disallow_on_server(name, parens = "(...)") {
-	return () => {
-		server_api_unavailable({ name: `${name}${parens}` });
-	};
 }
 // node_modules/@sveltejs/kit/src/runtime/form-utils.js
 /** @import { BinaryFormMeta, InternalRemoteFormIssue } from 'types' */
@@ -1750,7 +1726,7 @@ function is_prerendering(state) {
 * @param {Response} response
 */
 function with_version_header(response) {
-	response.headers.set("x-sveltekit-version", "1795622578709");
+	response.headers.set("x-sveltekit-version", "1795703655345");
 	return response;
 }
 /**
@@ -2630,6 +2606,6 @@ async function format_response(status, request, manifest) {
 	} else log += `${request.method} ${requested}`;
 	return log;
 }
-export { create_remote_key as $, BODY_DEPENDENT_METHODS as A, relative_pathname as At, cache_control_invalid_directive as B, strip_resolution_suffix as Bt, has_prerendered_path as C, get_hooks as Ct, serialize_uses as D, disable_search as Dt, redirect_response as E, decode_pathname as Et, REROUTED_URL_HEADER as F, add_data_suffix as Ft, load_tracking_after_return as G, save as Gt, cookie_path_mismatch as H, stream_text as Ht, SVELTE_KIT_ASSETS as I, add_resolution_suffix as It, transform_page_chunk_comments as J, set_assets as Jt, ssr_fetch_eager as K, app_dir as Kt, default_handle_error as L, has_data_suffix as Lt, IN_WEBCONTAINER as M, find_route as Mt, MUTATIVE_METHODS as N, invalid_export as Nt, throw_devalue_error as O, make_trackable as Ot, PAGE_METHODS as P, invalid_export_location as Pt, TRAILING_SLASH_PARAM as Q, handle_error_and_jsonify as R, has_resolution_suffix as Rt, get_node_type as S, once as St, method_not_allowed as T, SCHEME as Tt, form_action_data_without_ssr as U, text_encoder as Ut, content_type_invalid as V, base64_encode as Vt, form_action_error_without_ssr as W, restore as Wt, normalize_error as X, get_status as Y, enable_verbose_errors as Yt, INVALIDATED_PARAM as Z, handle_action_request as _, normalize_issue as _t, set_hooks as a, encoders as at, uneval_action_response as b, disallow_on_server as bt, fix_stack_trace as c, parse as ct, get_remote_action as d, is_form_content_type as dt, fetch_cache_url as et, get_remote_id as f, negotiate as ft, handle_action_json_request as g, group_formdata as gt, action_json_redirect as h, flatten_issues as ht, read_implementation as i, validate_load_response as it, ENDPOINT_METHODS as j, resolve as jt, with_version_header as k, normalize_path as kt, set_fix_stack_trace as l, stringify as lt, handle_remote_form_post as m, deep_set as mt, hooks as n, stringify_remote_arg as nt, set_manifest as o, has_custom_transporters as ot, handle_remote_call as p, create_field_proxy as pt, streaming_without_csr as q, assets as qt, manifest as r, validate_depends as rt, set_read_implementation as s, init_transport as st, format_response as t, parse_remote_arg as tt, collect_remote_data as u, uneval as ut, is_action_json_request as v, parse_form_key as vt, is_prerendering as w, options as wt, count_non_ssi_comments as x, noop as xt, is_action_request as y, split_path as yt, cache_control_empty_directive as z, strip_data_suffix as zt };
+export { create_remote_key as $, BODY_DEPENDENT_METHODS as A, invalid_export as At, cache_control_invalid_directive as B, text_encoder as Bt, has_prerendered_path as C, decode_pathname as Ct, serialize_uses as D, relative_pathname as Dt, redirect_response as E, normalize_path as Et, REROUTED_URL_HEADER as F, has_resolution_suffix as Ft, load_tracking_after_return as G, set_assets as Gt, cookie_path_mismatch as H, save as Ht, SVELTE_KIT_ASSETS as I, strip_data_suffix as It, transform_page_chunk_comments as J, ssr_fetch_eager as K, enable_verbose_errors as Kt, default_handle_error as L, strip_resolution_suffix as Lt, IN_WEBCONTAINER as M, add_data_suffix as Mt, MUTATIVE_METHODS as N, add_resolution_suffix as Nt, throw_devalue_error as O, resolve as Ot, PAGE_METHODS as P, has_data_suffix as Pt, TRAILING_SLASH_PARAM as Q, handle_error_and_jsonify as R, base64_encode as Rt, get_node_type as S, SCHEME as St, method_not_allowed as T, make_trackable as Tt, form_action_data_without_ssr as U, app_dir as Ut, content_type_invalid as V, restore as Vt, form_action_error_without_ssr as W, assets as Wt, normalize_error as X, get_status as Y, INVALIDATED_PARAM as Z, handle_action_request as _, normalize_issue as _t, set_hooks as a, encoders as at, uneval_action_response as b, get_hooks as bt, fix_stack_trace as c, parse as ct, get_remote_action as d, is_form_content_type as dt, fetch_cache_url as et, get_remote_id as f, negotiate as ft, handle_action_json_request as g, group_formdata as gt, action_json_redirect as h, flatten_issues as ht, read_implementation as i, validate_load_response as it, ENDPOINT_METHODS as j, invalid_export_location as jt, with_version_header as k, find_route as kt, set_fix_stack_trace as l, stringify as lt, handle_remote_form_post as m, deep_set as mt, hooks as n, stringify_remote_arg as nt, set_manifest as o, has_custom_transporters as ot, handle_remote_call as p, create_field_proxy as pt, streaming_without_csr as q, manifest as r, validate_depends as rt, set_read_implementation as s, init_transport as st, format_response as t, parse_remote_arg as tt, collect_remote_data as u, uneval as ut, is_action_json_request as v, parse_form_key as vt, is_prerendering as w, disable_search as wt, count_non_ssi_comments as x, options as xt, is_action_request as y, split_path as yt, cache_control_empty_directive as z, stream_text as zt };
 
 //# sourceMappingURL=internal.js.map

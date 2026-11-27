@@ -32,6 +32,8 @@ For example, to add Tailwind CSS:
 npx sv add tailwindcss
 ```
 
+hello
+
 ## Developing
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:

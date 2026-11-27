@@ -14,7 +14,7 @@ var POST = async ({ request }) => {
 		success: false,
 		error: "An account already exists with this email"
 	}, { status: 409 });
-	const { auth } = await import("../../../../chunks/auth.js");
+	const { auth } = await import("../../../../chunks/auth.js").then((n) => n.n);
 	const counter = await db.collection("counters").findOneAndUpdate({ _id: "investigators" }, { $inc: { sequence: 1 } }, {
 		upsert: true,
 		returnDocument: "after"

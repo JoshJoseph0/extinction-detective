@@ -18,7 +18,7 @@ function isAuthPath(url, options) {
 // src/hooks.server.ts
 var handle = async ({ event, resolve }) => {
 	if (building) return resolve(event);
-	const { auth } = await import("../chunks/auth.js");
+	const { auth } = await import("../chunks/auth.js").then((n) => n.n);
 	return svelteKitHandler({
 		event,
 		resolve,

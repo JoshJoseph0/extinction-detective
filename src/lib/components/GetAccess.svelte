@@ -51,12 +51,13 @@
 
 <style>
   .help-screen {
-    min-height: 100dvh;
+    min-height: 0;
+    width: min(100%, 38rem);
     display: grid;
     place-content: center;
     justify-items: center;
     gap: 16px;
-    padding: 24px;
+    padding: 0;
     color: #d4dbe9;
     text-align: center;
   }

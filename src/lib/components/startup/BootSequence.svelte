@@ -9,15 +9,23 @@
   //importing gsap for animations and onDestroy for cleanup
   import { gsap } from "gsap";
   import { onDestroy } from "svelte";
+  import AfterlightAnimation from "../AfterlightAnimation.svelte";
 
   //defining props for the component, seems to be working well, dont chnnge for the moment
-  let { onComplete }: { onComplete: () => void } = $props();
+  let { onComplete, onEnter = () => {} }: {
+    onComplete: () => void;
+    onEnter?: () => void;
+  } = $props();
 
   let stage = $state("off");
   let progress = $state(0);
   let visibleLines = $state(0);
+  let crtBackground: HTMLDivElement;
+  let bootContent: HTMLDivElement;
+  let scanlines: HTMLDivElement;
+  let tvStatic: HTMLDivElement;
 
-let started = false;
+  let started = false;
 
   async function startApp() {
     try {
@@ -54,6 +62,7 @@ let started = false;
     if (stage !== "off") return;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      onEnter();
       finishBoot();
       return;
     }
@@ -101,13 +110,40 @@ let started = false;
 
     bootTimeline.call(
       () => {
-        stage = "glitch";
+        stage = "entering";
+        onEnter();
       },
       [],
       7,
     );
 
-    bootTimeline.call(() => {}, [], 7.5);
+    // Move through the glass while the already-mounted login screen is revealed.
+    bootTimeline.to(crtBackground, {
+      scale: 1.22,
+      duration: 1.6,
+      ease: "power2.inOut",
+    }, 7);
+    bootTimeline.to(bootContent, {
+      scale: 1.06,
+      opacity: 0,
+      duration: 0.55,
+      ease: "power2.in",
+    }, 7);
+    bootTimeline.to(scanlines, {
+      opacity: 0,
+      duration: 1.1,
+      ease: "power2.inOut",
+    }, 7.3);
+    bootTimeline.to(tvStatic, {
+      opacity: 0,
+      duration: 0.9,
+      ease: "power2.inOut",
+    }, 7.2);
+    bootTimeline.to(crtBackground, {
+      opacity: 0,
+      duration: 1.1,
+      ease: "power2.inOut",
+    }, 7.5);
 
     bootTimeline.play();
   }
@@ -117,22 +153,31 @@ let started = false;
   });
 </script>
 
+<div class="boot-shell" class:entering={stage === "entering"}>
+  <div class="crt-background" bind:this={crtBackground} aria-hidden="true"></div>
+  <div class="boot-content" bind:this={bootContent}>
 {#if stage === "off"}
   <div class="power-screen">
-    <img
-      id="logo-on-power"
-      src="/images/afterlight-wordmark-cream.svg"
-      alt="Afterlight Systems"
-    />
-
+    <div class="logo-animation">
+      <AfterlightAnimation
+        name="loading-wordmark"
+        alt="Mr. Planet loading"
+        width={520}
+      />
+    </div>
+    <h1 style="font-size: 3rem;">Welcome, Investigator</h1>
     <button onclick={powerOn}> POWER ON </button>
+    <aside class="mr-planet" aria-label="Mr Planet's welcome">
+      <div class="speech-bubble">
+        Welcome, Investigator.<br />For the best experience, use headphones and go full screen.
+      </div>
+      <AfterlightAnimation name="talking" alt="Mr Planet talking" width="100%" />
+    </aside>
   </div>
-{:else if stage === "glitch"}
-  <div class="glitch-screen"></div>
 {:else if stage === "complete"}
   <!-- Boot sequence finished; render no overlay over the login screen. -->
 {:else}
-  <div class="bios" class:crt={stage === "bios"}>
+  <div class="bios">
     <h1>AFTERLIGHT SYSTEMS v1.04</h1>
 
     <p>Your Space • Our Research</p>
@@ -143,7 +188,7 @@ let started = false;
       {/each}
     </div>
 
-    {#if stage === "loading"}
+    {#if stage === "loading" || stage === "entering"}
       <p>Loading Afterlight System... {progress}%</p>
 
       <div class="loading-container">
@@ -153,24 +198,85 @@ let started = false;
           {/each}
         </div>
 
-        <img
-          class="mascot"
-          src="/images/mr-planet.svg"
-          alt="Mr Planet loading"
+        <AfterlightAnimation
+          name="loading-full-turn"
+          alt="Mr Planet turning while the system loads"
+          width={100}
         />
       </div>
     {/if}
   </div>
 {/if}
+  </div>
+  <div class="tv-static" bind:this={tvStatic} aria-hidden="true"></div>
+  <div class="scanlines" bind:this={scanlines} aria-hidden="true"></div>
+</div>
+
 <style>
-  .bios {
+  .boot-shell {
+    position: relative;
+    z-index: 1;
     min-height: 100dvh;
-    padding: 70px 76px;
-    background: #080a9a;
-    color: #d4dbe9;
-    font-size: 24px;
+    overflow: clip;
+    isolation: isolate;
+    color: #f8f0d4;
   }
 
+  .boot-shell.entering {
+    pointer-events: none;
+  }
+
+  .crt-background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: #000 url("/images/Retro CRT Scanline Background.png") center / 100% 100% no-repeat;
+    transform-origin: center;
+  }
+
+  .boot-content {
+    position: relative;
+    min-height: 100dvh;
+    transform-origin: center;
+  }
+
+  .scanlines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    background: repeating-linear-gradient(
+      transparent 0px,
+      transparent 3px,
+      rgba(0, 0, 0, 0.15) 3px,
+      rgba(0, 0, 0, 0.15) 4px
+    );
+  }
+
+  .tv-static {
+    position: fixed;
+    inset: -20%;
+    z-index: 998;
+    pointer-events: none;
+    opacity: 0.075;
+    background: url("/images/tv-static.svg") repeat;
+    animation: tv-noise 0.24s steps(1, end) infinite;
+  }
+
+  @keyframes tv-noise {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(-3%, 2%); }
+    50% { transform: translate(2%, -3%); }
+    75% { transform: translate(-2%, -1%); }
+  }
+
+  .bios {
+    min-height: 100dvh;
+    padding: clamp(48px, 7vw, 76px);
+    background: transparent;
+    color: #f8f0d4;
+    font-size: 24px;
+  }
   h1 {
     font-size: 28px;
     font-weight: normal;
@@ -180,28 +286,9 @@ let started = false;
   p {
     margin: 5px 0;
   }
-  #logo-on-power {
-    width: 20rem;
-    opacity: 0.7;
-  }
-
   .messages {
     margin: 55px 0;
     min-height: 210px;
-  }
-
-  .crt::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-
-    background: repeating-linear-gradient(
-      transparent 0px,
-      transparent 2px,
-      rgba(0, 0, 0, 0.25) 3px,
-      rgba(0, 0, 0, 0.25) 4px
-    );
   }
 
   .loading-container {
@@ -229,23 +316,91 @@ let started = false;
     background: #000080;
   }
 
-  .mascot {
-    width: 100px;
-    animation: spin 2s linear infinite;
-  }
-
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
   .power-screen {
+    position: relative;
     min-height: 100dvh;
     display: grid;
     place-content: center;
     text-align: center;
     gap: 25px;
+  }
+
+  .logo-animation {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .mr-planet {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 240px;
+    text-align: left;
+  }
+
+  .speech-bubble {
+    position: relative;
+    right: 80px;
+    background: #0d1822;
+    color: #f8f0d4;
+    border: 2px solid #83c9a5;
+    border-radius: 15px;
+    padding: 18px;
+    font-family: "VT323", monospace;
+    font-size: 22px;
+    line-height: 1.15;
+    margin-bottom: 25px;
+  }
+
+  .speech-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -25px;
+    right: 38px;
+    width: 30px;
+    height: 26px;
+    background: #83c9a5;
+    clip-path: polygon(0 0, 75% 0, 100% 100%);
+  }
+
+  .speech-bubble::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: -20px;
+    right: 41px;
+    width: 24px;
+    height: 23px;
+    background: #0d1822;
+    clip-path: polygon(0 0, 75% 0, 100% 100%);
+  }
+
+  @media (max-width: 1000px), (max-height: 700px) {
+    .power-screen {
+      padding: 24px;
+    }
+
+    .logo-animation {
+      position: static;
+      transform: none;
+      width: min(520px, 100%);
+      justify-self: center;
+    }
+
+    .mr-planet {
+      position: relative;
+      bottom: auto;
+      right: auto;
+      width: min(240px, 100%);
+      justify-self: end;
+      margin-top: 16px;
+    }
+
+    .speech-bubble {
+      right: 0;
+    }
   }
 
   button {
@@ -254,13 +409,8 @@ let started = false;
     border: 3px outset #ddd;
   }
 
-  .glitch-screen {
-    min-height: 100dvh;
-    background: #03030a;
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .mascot {
+    .tv-static {
       animation: none;
     }
   }
